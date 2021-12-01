@@ -1,4 +1,4 @@
-module Day1 (readLines, window, day1) where
+module Day1 (readLines, window, day1, day1_2) where
 
 import Prelude
 
@@ -6,7 +6,7 @@ import Data.Int (fromString)
 import Data.List.Lazy (List, Step(..), cons, filter, fromFoldable, length, nil, step, take)
 import Data.Maybe (Maybe(..))
 import Data.String (Pattern(..), split, trim)
-import Data.Traversable (sequence)
+import Data.Traversable (sequence, sum)
 
 readLines :: String -> List String
 readLines = filter (_ /= "") <<< map trim <<< fromFoldable <<< split (Pattern "\n")
@@ -28,8 +28,23 @@ depthIncreases xs = case step xs of
     _ -> Nothing
   _ -> Nothing
 
+depthIncreases2 :: List (List Int) -> Maybe Boolean
+depthIncreases2 xs = case step xs of
+  Cons x xs -> case step xs of
+    Cons y _ -> Just (sum x > sum y)
+    _ -> Nothing
+  _ -> Nothing
+
 day1 :: String -> Maybe Int
 day1 inputStr = do
   inputs <- sequence $ map fromString $ readLines inputStr
   increases <- sequence $ map depthIncreases $ window 2 inputs
+  pure $ length $ filter (\x -> x) $ increases
+
+day1_2 :: String -> Maybe Int
+day1_2 inputStr = do
+  inputs <- sequence $ map fromString $ readLines inputStr
+  let triples = window 3 inputs
+  let pairs = window 2 triples
+  increases <- sequence $ map depthIncreases2 pairs
   pure $ length $ filter (\x -> x) $ increases

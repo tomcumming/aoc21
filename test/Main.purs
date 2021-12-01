@@ -3,16 +3,15 @@ module Test.Main where
 import Prelude
 
 import Data.Maybe (Maybe(..))
-import Day1 (day1)
+import Day1 (day1, day1_2)
 import Effect (Effect)
 import Effect.Class.Console (log)
 
 showResult :: Boolean -> String
 showResult result = if result then "OK" else "WRONG"
 
-testDay1 :: Effect Unit
-testDay1 = do
-  let sample = """99
+day1ExampleInput :: String
+day1ExampleInput = """199
     200
     208
     210
@@ -22,7 +21,11 @@ testDay1 = do
     269
     260
     263"""
-  log $ "Day 1 example: " <> showResult (day1 sample == Just 7)
+
+testDay1 :: Effect Unit
+testDay1 = do
+  log $ "Day 1: " <> showResult (day1 day1ExampleInput == Just 7)
+  log $ "Day 1 pt2: " <> showResult (day1_2 day1ExampleInput == Just 5)
 
 main :: Effect Unit
 main = do

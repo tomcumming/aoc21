@@ -4,7 +4,7 @@ import Prelude
 
 import Data.Maybe (Maybe(..))
 import Day1 (day1, day1_2)
-import Day2 (day2)
+import Day2 (day2, day2_2)
 import Effect (Effect)
 import Effect.Class.Console (log)
 
@@ -39,6 +39,7 @@ day2ExampleInput = """forward 5
 testDay2 :: Effect Unit
 testDay2 = do
   log $ "Day 2: " <> showResult (day2 day2ExampleInput == Just 150)
+  log $ "Day 2 pt2: " <> showResult (day2_2 day2ExampleInput == Just 900)
 
 main :: Effect Unit
 main = do

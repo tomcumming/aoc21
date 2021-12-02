@@ -2,6 +2,7 @@ module Day1 (readLines, window, day1, day1_2) where
 
 import Prelude
 
+import Data.Array as Array
 import Data.Int (fromString)
 import Data.List.Lazy (List, Step(..), cons, filter, fromFoldable, length, nil, step, take)
 import Data.Maybe (Maybe(..))
@@ -22,17 +23,13 @@ window n xs = filter (\xs -> length xs >= n) $ go nil xs
         in cons (take n xs') $ go xs' ys
 
 depthIncreases :: List Int -> Maybe Boolean
-depthIncreases xs = case step xs of
-  Cons x xs -> case step xs of
-    Cons y _ -> Just (x > y)
-    _ -> Nothing
+depthIncreases xs = case Array.fromFoldable xs of
+  [x, y] -> Just (x > y)
   _ -> Nothing
 
 depthIncreases2 :: List (List Int) -> Maybe Boolean
-depthIncreases2 xs = case step xs of
-  Cons x xs -> case step xs of
-    Cons y _ -> Just (sum x > sum y)
-    _ -> Nothing
+depthIncreases2 xs = case Array.fromFoldable xs of
+  [x, y] -> Just (sum x > sum y)
   _ -> Nothing
 
 day1 :: String -> Maybe Int

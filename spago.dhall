@@ -12,7 +12,8 @@ to generate this file without the comments in this block.
 -}
 { name = "aoc21"
 , dependencies =
-  [ "console"
+  [ "arrays"
+  , "console"
   , "effect"
   , "foldable-traversable"
   , "integers"

@@ -7,9 +7,8 @@ import Day1 (day1, day1_2)
 import Day2 (day2, day2_2)
 import Effect (Effect)
 import Effect.Class.Console (log)
-
-showResult :: Boolean -> String
-showResult result = if result then "OK" else "WRONG"
+import Test (showResult)
+import Test.Day3 (testDay3)
 
 day1ExampleInput :: String
 day1ExampleInput = """199
@@ -45,3 +44,4 @@ main :: Effect Unit
 main = do
   testDay1
   testDay2
+  testDay3

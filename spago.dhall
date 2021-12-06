@@ -14,11 +14,13 @@ to generate this file without the comments in this block.
 , dependencies =
   [ "arrays"
   , "console"
+  , "control"
   , "effect"
   , "foldable-traversable"
   , "integers"
   , "lists"
   , "maybe"
+  , "ordered-collections"
   , "prelude"
   , "psci-support"
   , "strings"

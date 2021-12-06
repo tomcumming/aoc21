@@ -9,6 +9,7 @@ import Effect (Effect)
 import Effect.Class.Console (log)
 import Test (showResult)
 import Test.Day3 (testDay3)
+import Test.Day4 (testDay4)
 
 day1ExampleInput :: String
 day1ExampleInput = """199
@@ -45,3 +46,4 @@ main = do
   testDay1
   testDay2
   testDay3
+  testDay4

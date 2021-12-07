@@ -1,4 +1,4 @@
-module Day5 (Coord, Line, parseLine, covered, day5) where
+module Day5 (Coord, Line, parseLine, covered, day5, day5_2) where
 
 import Prelude
 
@@ -65,5 +65,11 @@ day5 :: String -> Maybe Int
 day5 inputStr = do
   allLines <- sequence $ map parseLine (readLines inputStr)
   let lines = List.filter (\line -> isSimpleDirection (direction line)) allLines
+  let total = sumLines lines
+  Just $ Map.size $ Map.filter (_ > 1) total
+
+day5_2 :: String -> Maybe Int
+day5_2 inputStr = do
+  lines <- sequence $ map parseLine (readLines inputStr)
   let total = sumLines lines
   Just $ Map.size $ Map.filter (_ > 1) total

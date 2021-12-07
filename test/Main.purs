@@ -12,6 +12,7 @@ import Test.Day3 (testDay3)
 import Test.Day4 (testDay4)
 import Test.Day5 (testDay5)
 import Test.Day6 (testDay6)
+import Test.Day7 (testDay7)
 
 day1ExampleInput :: String
 day1ExampleInput = """199
@@ -51,3 +52,4 @@ main = do
   testDay4
   testDay5
   testDay6
+  testDay7

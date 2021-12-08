@@ -10,12 +10,13 @@ import Test (showResult)
 
 testParseLine :: Effect Unit
 testParseLine = do
-  let expected = { from: { x: 1, y: 2 }, to: { x: 3, y: 4} }
+  let expected = { from: { x: 1, y: 2 }, to: { x: 3, y: 4 } }
   log $ "Parse Line: "
     <> showResult (parseLine " 1,2 -> 3,4 " == Just expected)
 
 exampleInput :: String
-exampleInput = """0,9 -> 5,9
+exampleInput =
+  """0,9 -> 5,9
   8,0 -> 0,8
   9,4 -> 3,4
   2,2 -> 2,1

@@ -24,39 +24,41 @@ g 6
 
 testParseExample :: Effect Unit
 testParseExample = do
-  let examples = map Set.fromFoldable
-          [ [1, 4]
-          , [2, 5, 1, 4, 6, 0, 3]
-          , [2, 1, 3, 6, 4, 5]
-          , [5, 6, 0, 4, 2, 3]
-          , [2, 6, 4, 1]
-          , [5, 3, 2, 6, 4]
-          , [0, 6, 4, 1, 5, 3]
-          , [5, 4, 2, 3, 1]
-          , [5, 0, 1, 2, 3]
-          , [4, 3, 1]
-          ]
-  let tests = map Set.fromFoldable
-          [ [5, 3, 6, 0, 2, 1, 4] -- cefbgd gcbe
-          , [2, 4, 5, 3, 1]
-          , [2, 4, 5, 1, 6, 3]
-          , [6, 2, 1, 4]
-          ]
+  let
+    examples = map Set.fromFoldable
+      [ [ 1, 4 ]
+      , [ 2, 5, 1, 4, 6, 0, 3 ]
+      , [ 2, 1, 3, 6, 4, 5 ]
+      , [ 5, 6, 0, 4, 2, 3 ]
+      , [ 2, 6, 4, 1 ]
+      , [ 5, 3, 2, 6, 4 ]
+      , [ 0, 6, 4, 1, 5, 3 ]
+      , [ 5, 4, 2, 3, 1 ]
+      , [ 5, 0, 1, 2, 3 ]
+      , [ 4, 3, 1 ]
+      ]
+  let
+    tests = map Set.fromFoldable
+      [ [ 5, 3, 6, 0, 2, 1, 4 ] -- cefbgd gcbe
+      , [ 2, 4, 5, 3, 1 ]
+      , [ 2, 4, 5, 1, 6, 3 ]
+      , [ 6, 2, 1, 4 ]
+      ]
   log $ "Parse Example: "
-    <> showResult (parseExample exampleStr == Just { examples, tests} )
+    <> showResult (parseExample exampleStr == Just { examples, tests })
 
 testSolveOne :: Effect Unit
 testSolveOne = do
-  let expected = Set.fromFoldable [ {c: 1, f: 4}, { c: 4, f: 1}]
+  let expected = Set.fromFoldable [ { c: 1, f: 4 }, { c: 4, f: 1 } ]
   { examples } <- justOrDie $ parseExample exampleStr
   log $ "Solve One: "
-    <> showResult (Set.fromFoldable(solveOne examples) == expected)
+    <> showResult (Set.fromFoldable (solveOne examples) == expected)
 
 testSolveSeven :: Effect Unit
 testSolveSeven = do
   { examples } <- justOrDie $ parseExample exampleStr
   let solutions = Set.fromFoldable (solveOne examples >>= solveSeven examples)
-  let expected = Set.fromFoldable [ {a: 3, c: 1, f: 4}, { a: 3, c: 4, f: 1}]
+  let expected = Set.fromFoldable [ { a: 3, c: 1, f: 4 }, { a: 3, c: 4, f: 1 } ]
   log $ "Solve Seven: "
     <> showResult (solutions == expected)
 

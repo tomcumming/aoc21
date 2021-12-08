@@ -10,6 +10,6 @@ import Test (showResult)
 
 testDay6 :: Effect Unit
 testDay6 = do
-  let state = [3,4,3,1,2]
+  let state = [ 3, 4, 3, 1, 2 ]
   log $ "Day 6: "
     <> showResult (length (day6 state) == 5934)

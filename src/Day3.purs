@@ -20,18 +20,20 @@ parseLine inStr = case String.uncons inStr of
 
 mostCommon :: List.List Int -> Int
 mostCommon xs =
-  let { yes, no } = List.partition (_ == 1) xs
-  in if List.length yes >= List.length no then 1 else 0
+  let
+    { yes, no } = List.partition (_ == 1) xs
+  in
+    if List.length yes >= List.length no then 1 else 0
 
 leastCommon :: List.List Int -> Int
 leastCommon xs = if mostCommon xs == 1 then 0 else 1
 
 fromBinary :: List.List Int -> Int
 fromBinary xs = _.t
-    $ List.foldl
-        (\{ t, i } n -> { t: t + n * Int.pow 2 i, i: i + 1 })
-        { t: 0, i: 0 }
-        (List.reverse xs)
+  $ List.foldl
+      (\{ t, i } n -> { t: t + n * Int.pow 2 i, i: i + 1 })
+      { t: 0, i: 0 }
+      (List.reverse xs)
 
 day3 :: String -> Maybe Int
 day3 inputStr = do

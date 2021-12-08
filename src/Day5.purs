@@ -21,7 +21,7 @@ parseCoord str = do
   let parts = String.split (String.Pattern ",") str
   cs <- sequence $ map (fromString <<< String.trim) parts
   case cs of
-    [x, y] -> Just { x, y }
+    [ x, y ] -> Just { x, y }
     _ -> Nothing
 
 normal :: Int -> Int
@@ -46,16 +46,16 @@ parseLine str = do
   let parts = String.split (String.Pattern "->") str
   cs <- sequence $ map parseCoord parts
   case cs of
-    [from, to] -> Just { from, to }
+    [ from, to ] -> Just { from, to }
     _ -> Nothing
 
 covered :: Line -> Total
 covered line = go (direction line) line.from
   where
-    go :: Direction -> Coord -> Total
-    go d c
-      | c == line.to = Map.singleton c 1
-      | otherwise = Map.insert c 1 (go d (advance d c))
+  go :: Direction -> Coord -> Total
+  go d c
+    | c == line.to = Map.singleton c 1
+    | otherwise = Map.insert c 1 (go d (advance d c))
 
 sumLines :: List.List Line -> Total
 sumLines = List.foldl (Map.unionWith (+)) Map.empty

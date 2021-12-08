@@ -16,7 +16,8 @@ import Test.Day7 (testDay7)
 import Test.Day8 (testDay8)
 
 day1ExampleInput :: String
-day1ExampleInput = """199
+day1ExampleInput =
+  """199
   200
   208
   210
@@ -33,7 +34,8 @@ testDay1 = do
   log $ "Day 1 pt2: " <> showResult (day1_2 day1ExampleInput == Just 5)
 
 day2ExampleInput :: String
-day2ExampleInput = """forward 5
+day2ExampleInput =
+  """forward 5
   down 5
   forward 8
   up 3

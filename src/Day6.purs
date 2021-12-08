@@ -7,8 +7,8 @@ import Data.Array (concatMap)
 step :: Array Int -> Array Int
 step = concatMap go
   where
-    go 0 = [6, 8]
-    go n = [n - 1]
+  go 0 = [ 6, 8 ]
+  go n = [ n - 1 ]
 
 simDays :: Array Int -> Int -> Array Int
 simDays state n

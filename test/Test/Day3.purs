@@ -10,7 +10,8 @@ import Effect.Console (log)
 import Test (showResult)
 
 day3ExampleInput :: String
-day3ExampleInput = """00100
+day3ExampleInput =
+  """00100
   11110
   10110
   10111
@@ -25,13 +26,12 @@ day3ExampleInput = """00100
 
 testMostCommon :: Effect Unit
 testMostCommon = do
-  let input = List.fromFoldable [0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0]
+  let input = List.fromFoldable [ 0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0 ]
   log $ "Most Common: " <> showResult (mostCommon input == 1)
-
 
 testLeastCommon :: Effect Unit
 testLeastCommon = do
-  let input = List.fromFoldable [0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0]
+  let input = List.fromFoldable [ 0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0 ]
   log $ "Least Common: " <> showResult (leastCommon input == 0)
 
 day3Tests :: Effect Unit

@@ -15,21 +15,23 @@ readLines = filter (_ /= "") <<< map trim <<< fromFoldable <<< split (Pattern "\
 window :: forall a. Int -> List a -> List (List a)
 window n xs = filter (\xs -> length xs >= n) $ go nil xs
   where
-    go :: List a -> List a -> List (List a)
-    go xs ys = case step ys of
-      Nil -> nil
-      Cons y ys ->
-        let xs' = cons y xs
-        in cons (take n xs') $ go xs' ys
+  go :: List a -> List a -> List (List a)
+  go xs ys = case step ys of
+    Nil -> nil
+    Cons y ys ->
+      let
+        xs' = cons y xs
+      in
+        cons (take n xs') $ go xs' ys
 
 depthIncreases :: List Int -> Maybe Boolean
 depthIncreases xs = case Array.fromFoldable xs of
-  [x, y] -> Just (x > y)
+  [ x, y ] -> Just (x > y)
   _ -> Nothing
 
 depthIncreases2 :: List (List Int) -> Maybe Boolean
 depthIncreases2 xs = case Array.fromFoldable xs of
-  [x, y] -> Just (sum x > sum y)
+  [ x, y ] -> Just (sum x > sum y)
   _ -> Nothing
 
 day1 :: String -> Maybe Int

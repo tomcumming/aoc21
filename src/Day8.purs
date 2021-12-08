@@ -31,7 +31,7 @@ parseExample :: String -> Maybe Example
 parseExample inputStr = do
   let ps = map (map readIndexs <<< readWords) $ String.split (String.Pattern "|") inputStr
   case ps of
-    [ex, te] -> Just { examples: Array.fromFoldable ex, tests: Array.fromFoldable te }
+    [ ex, te ] -> Just { examples: Array.fromFoldable ex, tests: Array.fromFoldable te }
     _ -> Nothing
 
 solveOne :: Unknown -> List.List Solved2
@@ -47,52 +47,52 @@ solveSeven :: Unknown -> Solved2 -> List.List Solved3
 solveSeven inputs { c, f } = do
   input <- List.fromFoldable inputs
   guard (Set.size input == 3)
-  guard (Set.subset (Set.fromFoldable [c, f]) input) -- always true
+  guard (Set.subset (Set.fromFoldable [ c, f ]) input) -- always true
   a <- List.fromFoldable input
-  guard (Array.notElem a [c, f])
+  guard (Array.notElem a [ c, f ])
   pure { a, c, f }
 
 solveFour :: Unknown -> Solved3 -> List.List Solved5
 solveFour inputs { a, c, f } = do
   input <- List.fromFoldable inputs
   guard (Set.size input == 4)
-  guard (Set.subset (Set.fromFoldable [c, f]) input)
+  guard (Set.subset (Set.fromFoldable [ c, f ]) input)
   b <- List.fromFoldable input
-  guard (Array.notElem b [a, c, f])
+  guard (Array.notElem b [ a, c, f ])
   d <- List.fromFoldable input
-  guard (Array.notElem d [a, b, c, f])
+  guard (Array.notElem d [ a, b, c, f ])
   pure { a, b, c, d, f }
 
 solveThree :: Unknown -> Solved5 -> List.List Solved6
 solveThree inputs { a, b, c, d, f } = do
   input <- List.fromFoldable inputs
   guard (Set.size input == 5)
-  guard (Set.subset (Set.fromFoldable [a, c, d, f]) input)
+  guard (Set.subset (Set.fromFoldable [ a, c, d, f ]) input)
   g <- List.fromFoldable input
-  guard (Array.notElem g [a, b, c, d, f])
+  guard (Array.notElem g [ a, b, c, d, f ])
   pure { a, b, c, d, f, g }
 
 solveTwo :: Unknown -> Solved6 -> List.List Solved7
 solveTwo inputs { a, b, c, d, f, g } = do
   input <- List.fromFoldable inputs
   guard (Set.size input == 5)
-  guard (Set.subset (Set.fromFoldable [a, c, d, g]) input)
+  guard (Set.subset (Set.fromFoldable [ a, c, d, g ]) input)
   e <- List.fromFoldable input
-  guard (Array.notElem e [a, b, c, d, f, g])
+  guard (Array.notElem e [ a, b, c, d, f, g ])
   pure { a, b, c, d, e, f, g }
 
 solveFive :: Unknown -> Solved7 -> List.List Solved7
 solveFive inputs { a, b, c, d, e, f, g } = do
   input <- List.fromFoldable inputs
   guard (Set.size input == 5)
-  guard (input == Set.fromFoldable [a, b, d, f, g])
+  guard (input == Set.fromFoldable [ a, b, d, f, g ])
   pure { a, b, c, d, e, f, g }
 
 solveSix :: Unknown -> Solved7 -> List.List Solved7
 solveSix inputs { a, b, c, d, e, f, g } = do
   input <- List.fromFoldable inputs
   guard (Set.size input == 6)
-  guard (input == Set.fromFoldable [a, b, d, e, f, g])
+  guard (input == Set.fromFoldable [ a, b, d, e, f, g ])
   pure { a, b, c, d, e, f, g }
 
 solve' :: Unknown -> List.List Solved7
@@ -106,19 +106,19 @@ solve' examples = solveOne examples
 
 solve :: Unknown -> Maybe Solved7
 solve examples = case Array.fromFoldable (solve' examples) of
-  [solution] -> Just solution
+  [ solution ] -> Just solution
   _ -> Nothing
 
 digit :: Solved7 -> Set.Set Index -> Maybe Int
 digit { a, b, c, d, e, f, g } dig
-  | dig == Set.fromFoldable [c, f] = Just 1
-  | dig == Set.fromFoldable [a, c, d, e, g] = Just 2
-  | dig == Set.fromFoldable [a, c, d, f, g] = Just 3
-  | dig == Set.fromFoldable [b, c, d, f] = Just 4
-  | dig == Set.fromFoldable [a, b, d, f, g] = Just 5
-  | dig == Set.fromFoldable [a, b, d, e, f, g] = Just 6
-  | dig == Set.fromFoldable [a, c, f] = Just 7
-  | dig == Set.fromFoldable [a, b, c, d, e, f, g] = Just 8
-  | dig == Set.fromFoldable [a, b, c, d, f, g] = Just 9
-  | dig == Set.fromFoldable [a, b, c, e, f, g] = Just 0
+  | dig == Set.fromFoldable [ c, f ] = Just 1
+  | dig == Set.fromFoldable [ a, c, d, e, g ] = Just 2
+  | dig == Set.fromFoldable [ a, c, d, f, g ] = Just 3
+  | dig == Set.fromFoldable [ b, c, d, f ] = Just 4
+  | dig == Set.fromFoldable [ a, b, d, f, g ] = Just 5
+  | dig == Set.fromFoldable [ a, b, d, e, f, g ] = Just 6
+  | dig == Set.fromFoldable [ a, c, f ] = Just 7
+  | dig == Set.fromFoldable [ a, b, c, d, e, f, g ] = Just 8
+  | dig == Set.fromFoldable [ a, b, c, d, f, g ] = Just 9
+  | dig == Set.fromFoldable [ a, b, c, e, f, g ] = Just 0
   | otherwise = Nothing

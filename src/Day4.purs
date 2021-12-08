@@ -29,8 +29,8 @@ readBingoNumbers = sequence
 bingo :: Marked -> Board -> Boolean
 bingo marked board = testWin board || testWin (List.transpose board)
   where
-    testWin :: Board -> Boolean
-    testWin = List.any (List.all $ \x -> Set.member x marked)
+  testWin :: Board -> Boolean
+  testWin = List.any (List.all $ \x -> Set.member x marked)
 
 boardSum :: Marked -> Board -> Int
 boardSum marked = sum <<< List.filter (\x -> not $ Set.member x marked) <<< List.concat
@@ -48,10 +48,10 @@ day4 boardStrs markedStr = do
   marks <- readBingoNumbers markedStr
   go Set.empty boards marks
   where
-    go :: Marked -> List.List Board -> List.List Int -> Maybe Int
-    go lastMarked boards marks = do
-      { head, tail } <- List.uncons marks
-      let marked = Set.insert head lastMarked
-      case List.find (bingo marked) boards of
-        Nothing -> go marked boards tail
-        Just board -> Just $ boardSum marked board * head
+  go :: Marked -> List.List Board -> List.List Int -> Maybe Int
+  go lastMarked boards marks = do
+    { head, tail } <- List.uncons marks
+    let marked = Set.insert head lastMarked
+    case List.find (bingo marked) boards of
+      Nothing -> go marked boards tail
+      Just board -> Just $ boardSum marked board * head
